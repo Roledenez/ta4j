@@ -23,11 +23,14 @@
 package ta4jexamples.loaders;
 
 import au.com.bytecode.opencsv.CSVReader;
-import eu.verdelhan.ta4j.TimeSeries;
 import eu.verdelhan.ta4j.Tick;
+import eu.verdelhan.ta4j.TimeSeries;
+import org.joda.time.DateTime;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.joda.time.DateTime;
 
 /**
  * This class build a Ta4j time series from a CSV file containing ticks.
@@ -48,6 +50,9 @@ public class CsvTicksLoader {
      * @return a time series from Apple Inc. ticks.
      */
     public static TimeSeries loadAppleIncSeries() {
+
+        URL url = CsvTicksLoader.class.getClassLoader().getResource("appleinc_ticks_from_20130101_usd.csv");
+        System.out.println(url.getPath());
 
         InputStream stream = CsvTicksLoader.class.getClassLoader().getResourceAsStream("appleinc_ticks_from_20130101_usd.csv");
 
